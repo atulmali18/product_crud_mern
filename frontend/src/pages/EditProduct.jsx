@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5000/api/products";
-
 const EditProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -18,7 +16,7 @@ const EditProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(API_URL);
+        const res = await axios.get("http://localhost:5000/api/products");
         const product = res.data.data.find((p) => p._id === id);
 
         if (!product) {
@@ -54,7 +52,7 @@ const EditProduct = () => {
 
     setLoading(true);
     try {
-      await axios.put(`${API_URL}/${id}`, form);
+      await axios.put(`http://localhost:5000/api/products/${id}`, form);
       navigate("/");
     } finally {
       setLoading(false);

@@ -2,8 +2,6 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5000/api/products";
-
 const AddProduct = () => {
   const navigate = useNavigate();
 
@@ -30,7 +28,7 @@ const AddProduct = () => {
 
     setLoading(true);
     try {
-      await axios.post(API_URL, form);
+      await axios.post("http://localhost:5000/api/products", form);
       navigate("/");
     } finally {
       setLoading(false);
