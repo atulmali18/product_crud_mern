@@ -51,20 +51,24 @@ const ProductList = () => {
                 <td className="border px-3 py-2 text-center">{index + 1}</td>
                 <td className="border px-3 py-2">{p.name}</td>
                 <td className="border px-3 py-2">₹ {p.price}</td>
-                <td className="border px-3 py-2 text-center space-x-3">
-                  <Link
-                    to={`/edit/${p._id}`}
-                    className="text-blue-600 hover:underline"
-                  >
-                    Edit
-                  </Link>
+                <td className="border px-3 py-2 text-center">
+                  <div className="flex justify-center gap-2">
+                    <Link
+                      to={`/edit/${p._id}`}
+                      className="px-2 py-1 text-sm rounded-md border border-blue-600 text-blue-600 
+                 hover:bg-blue-600 hover:text-white transition"
+                    >
+                      Edit
+                    </Link>
 
-                  <button
-                    onClick={() => deleteProduct(p._id)}
-                    className="text-red-600 hover:underline cursor-pointer"
-                  >
-                    Delete
-                  </button>
+                    <button
+                      onClick={() => deleteProduct(p._id)}
+                      className="px-3 py-1 text-sm rounded-md border border-red-600 text-red-600 
+                 hover:bg-red-600 hover:text-white transition cursor-pointer"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))
