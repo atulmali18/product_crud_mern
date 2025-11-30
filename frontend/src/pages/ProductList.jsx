@@ -3,7 +3,12 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const ProductList = () => {
+  // let locCart = localStorage.getItem("loccart") || [];
   const [products, setProducts] = useState([]);
+
+  const [cart, setCart] = useState([]);
+
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     fetchProducts();
@@ -20,8 +25,23 @@ const ProductList = () => {
     fetchProducts();
   };
 
+  const handleCart = (p) => {
+    setCart((prevCart) => {
+      let count;
+      for (let i = 0; i <= cart.length - 1; i++) {
+        count = count + cart[i].price;
+      }
+      setTotal(count);
+      return [...prevCart, p];
+    });
+    // localStorage.setItem("loccart", cart);
+  };
   return (
     <div className="mt-4 overflow-x-auto">
+      <span className="text-blue-600 font-semibold">
+        Cart :{cart.length ? cart.length : 0}{" "}
+        <span className="pl-5">Total Price : {total}</span>
+      </span>
       <table className="w-full border border-gray-300 rounded-md text-sm">
         <thead className="bg-gray-100">
           <tr>
@@ -51,6 +71,16 @@ const ProductList = () => {
                 <td className="border px-3 py-2 text-center">{index + 1}</td>
                 <td className="border px-3 py-2">{p.name}</td>
                 <td className="border px-3 py-2">₹ {p.price}</td>
+                <td className="border px-3 py-2">
+                  <button
+                    onClick={() => {
+                      handleCart(p);
+                    }}
+                  >
+                    Add to Cart
+                  </button>
+                </td>
+
                 <td className="border px-3 py-2 text-center">
                   <div className="flex justify-center gap-2">
                     <Link

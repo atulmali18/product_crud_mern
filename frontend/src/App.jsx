@@ -11,6 +11,7 @@ function App() {
           <Link className="text-blue-600 font-semibold" to="/">
             Products
           </Link>
+
           <Link className="text-green-600 font-semibold" to="/add">
             Add Product
           </Link>
